@@ -7,6 +7,41 @@
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        // Initialisation EmailJS avec la clé publique
+        (function() {
+            emailjs.init({
+                publicKey: "ikj131HFb84o4azf7",
+            });
+        })();
+    </script>
+    
+    <script type="text/javascript">
+        // Gestion de la soumission du formulaire
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Empêche l'envoi classique du formulaire
+    
+                // Si le formulaire est valide, envoie via EmailJS
+                if (this.checkValidity()) {
+                    emailjs.sendForm('service_wvbyoqj', 'contact_form', this)
+                        .then(() => {
+                            // Si succès, cache le formulaire et affiche le message de remerciement
+                            document.getElementById('contact-form').classList.add('hidden'); // Cache le formulaire
+                            document.getElementById('thank-you-message').classList.remove('hidden'); // Affiche le message
+                        }, (error) => {
+                            // Affiche une erreur en cas d'échec
+                            console.log('FAILED...', error);
+                        });
+                } else {
+                    // Si le formulaire n'est pas valide, affiche les erreurs
+                    this.reportValidity();
+                }
+            });
+        }
+    </script>
 </head>
 <body class="bg-gray-100">
     <header class="bg-white shadow-md">
@@ -101,29 +136,46 @@
                         </a>
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <form action="#" method="POST" class="bg-white p-8 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Contactez-nous</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-semibold mb-2">Nom</label>
-                                <input type="text" id="name" name="name" class="w-full border-gray-300 border rounded-md py-2 px-4" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full border-gray-300 border rounded-md py-2 px-4" required>
-                            </div>
+         
+                <!-- Formulaire de contact -->
+                <form id="contact-form" class="bg-white p-8 rounded-lg shadow-md" novalidate>
+                    <input type="hidden" name="contact_number" value="697483">
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Contactez-nous</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="user_name" class="block text-gray-700 font-semibold mb-2">Nom</label>
+                            <input type="text" id="user_name" name="user_name" class="w-full border-gray-300 border rounded-md py-2 px-4" required>
                         </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 font-semibold mb-2">Sujet</label>
-                            <input type="text" id="subject" name="subject" class="w-full border-gray-300 border rounded-md py-2 px-4" required>
+                        <div>
+                            <label for="user_email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="user_email" name="user_email" class="w-full border-gray-300 border rounded-md py-2 px-4" required>
                         </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full border-gray-300 border rounded-md py-2 px-4" required></textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Envoyer</button>
-                    </form>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="arrival_date" class="block text-sm font-medium text-gray-700">Date d'arrivée</label>
+                        <input type="date" name="arrival_date" id="arrival_date" required class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                
+                    <div class="mb-4">
+                        <label for="departure_date" class="block text-sm font-medium text-gray-700">Date de départ</label>
+                        <input type="date" name="departure_date" id="departure_date" required class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full border-gray-300 border rounded-md py-2 px-4" required></textarea>
+                    </div>
+
+                    <input type="submit" value="Envoyer" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 cursor-pointer">
+                </form>
+
+                <!-- Message de remerciement, caché par défaut -->
+                <div id="thank-you-message" class="hidden bg-green-100 p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">Merci pour votre message !</h3>
+                    <p class="text-green-700">Nous avons bien reçu votre message et vous répondrons dans les plus brefs délais.</p>
                 </div>
             </div>
         </section>
