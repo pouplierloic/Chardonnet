@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Chardonnet - Appartement aux Arcs 1800</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="./assets/logo_chardonnet.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -17,7 +18,6 @@
             });
         })();
     </script>
-    
     <script type="text/javascript">
         // Gestion de la soumission du formulaire
         window.onload = function() {
@@ -42,6 +42,8 @@
             });
         }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
 </head>
 <body class="bg-gray-100">
     <header class="bg-white shadow-md">
@@ -89,8 +91,8 @@
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow-md">
                             <i class="fas fa-utensils text-2xl text-blue-500 mb-2"></i>
-                            <h3 class="font-semibold mb-1">Cuisine</h3>
-                            <p class="text-gray-600">Équipée</p>
+                            <h3 class="font-semibold mb-1">Cuisine ouverte</h3>
+                            <p class="text-gray-600">Full équipée</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow-md">
                             <i class="fas fa-skiing text-2xl text-blue-500 mb-2"></i>
@@ -109,15 +111,36 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Galerie</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <img src="./assets/chambre11.JPG" alt="Chambre1" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    <img src="./assets/Chambre21.JPG" alt="Chambre2" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    <img src="./assets/Cuisine.JPG" alt="Cuisine" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    <img src="./assets/SDB.JPG" alt="SalleDeBain" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    <img src="./assets/Salon7.JPG" alt="Salon" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    <img src="./assets/table.JPG" alt="Table" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <a href="./assets/28c9a529-8799-4f44-b47a-a6b121a41d1a.webp" data-lightbox="appartement" data-title="Salon">
+                        <img src="./assets/28c9a529-8799-4f44-b47a-a6b121a41d1a.webp" alt="Salon" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <a href="./assets/Salon1.JPG" data-lightbox="appartement" data-title="Dining">
+                        <img src="./assets/Salon1.JPG" alt="Dining" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <a href="./assets/Cuisine.JPG" data-lightbox="appartement" data-title="Cuisine">
+                        <img src="./assets/Cuisine.JPG" alt="Cuisine" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <a href="./assets/SDB.JPG" data-lightbox="appartement" data-title="SDB">
+                        <img src="./assets/SDB.JPG" alt="SDB" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <a href="./assets/Chambre21.JPG" data-lightbox="appartement" data-title="Chambre 2">
+                        <img src="./assets/Chambre21.JPG" alt="Chambre 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <a href="./assets/chambre12.JPG" data-lightbox="appartement" data-title="chambre12">
+                        <img src="./assets/chambre12.JPG" alt="Chambre 2" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </a>
+                    <div class="text-center mt-8">
+                        <a href="/gallery.html" class="inline-block px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Afficher plus de photos
+                        </a>
+                    </div>
+                    
+
+
                 </div>
             </div>
         </section>
+        
 
         <section id="booking" class="container mx-auto px-8 py-12">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Réserver votre séjour</h2>
@@ -184,9 +207,13 @@
 
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-6 flex flex-wrap justify-between items-center">
-            <div class="w-full md:w-1/3 text-center md:text-left">
-                <h3 class="text-lg font-semibold">Le Chardonnet</h3>
-                <p>Résidence Les Chardons, Les Arcs 1800</p>
+            <div class="w-full md:w-1/3 text-center md:text-left flex items-center">
+                <!-- Logo dans le footer -->
+                <img src="./assets/lastlogo.jpg" alt="Logo Le Chardonnet" class="h-12 mr-3t">
+                <div>
+                    <h3 class="text-lg font-semibold">Le Chardonnet</h3>
+                    <p>Résidence Les Chardons, Les Arcs 1800</p>
+                </div>
             </div>
             <div class="w-full md:w-1/3 text-center mt-4 md:mt-0">
                 <a href="#" class="text-gray-400 hover:text-white mx-2"><i class="fab fa-facebook-f"></i></a>
